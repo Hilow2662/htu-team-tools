@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTU Team Tools</title>
+  <link rel="stylesheet" href="shared/site.css">
+  <script src="shared/team.js"></script>
+  <style>
+    .tools { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .tool-card { display: block; text-decoration: none; color: inherit; border-top: 5px solid var(--accent); }
+    .tool-card:hover { border-color: var(--hot); }
+    .tool-card h2 { margin-bottom: 6px; }
+    .tool-card p { margin: 0; color: var(--muted); }
+    .palette { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+    .palette span { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; }
+    .palette i { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(0,0,0,.35); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <span class="abbr" data-team="abbreviation">HTU</span>
+      <span class="name" data-team="fullName">Honolulu Tech Generals</span>
+      <span class="tool" data-team="game"></span>
+    </div>
+  </header>
+  <main>
+    <div class="tools">
+      <a class="panel tool-card" href="uniform-builder/">
+        <h2>Uniform Builder</h2>
+        <p>Mix and match helmet, jersey, pants, and sock colors. Save combos and download PNGs.</p>
+      </a>
+    </div>
+    <div class="palette" id="palette"></div>
+  </main>
+  <script>
+    document.querySelectorAll("[data-team]").forEach(function (el) {
+      el.textContent = HTU_TEAM[el.getAttribute("data-team")];
+    });
+    HTU_TEAM.palette.forEach(function (c) {
+      var s = document.createElement("span");
+      var dot = document.createElement("i");
+      dot.style.background = c.hex;
+      s.append(dot, c.name + " " + c.hex);
+      document.getElementById("palette").appendChild(s);
+    });
+  </script>
+</body>
+</html>

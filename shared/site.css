@@ -1,0 +1,71 @@
+/* Shared look for all HTU tools. Colors come from shared/team.js. */
+:root {
+  --bg: #eef1f5;
+  --panel: #ffffff;
+  --ink: #16202c;
+  --muted: #5b6776;
+  --line: #d6dce4;
+  --primary: var(--htu-navy, #0B1F3A);
+  --accent: var(--htu-teal, #00818A);
+  --hot: var(--htu-sunset-orange, #F26B21);
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+}
+
+.site-header {
+  background: var(--primary);
+  color: #fff;
+  padding: 16px 20px;
+  border-bottom: 5px solid var(--hot);
+}
+.site-header .inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.site-header .abbr { font-weight: 900; font-size: 1.6rem; letter-spacing: 0.04em; }
+.site-header .name { font-size: 1.1rem; opacity: 0.9; }
+.site-header a { color: #fff; }
+.site-header .tool { margin-left: auto; font-size: 0.95rem; opacity: 0.85; }
+
+main { max-width: 1200px; margin: 0 auto; padding: 20px 16px 48px; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+h2 { margin: 0 0 12px; font-size: 1.15rem; }
+
+button, .button {
+  font: inherit;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  padding: 7px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+button:hover, .button:hover { border-color: var(--accent); }
+button.primary, .button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+button.primary:hover { filter: brightness(1.08); }
+button.danger:hover { border-color: #c0392b; color: #c0392b; }
+
+input[type="text"], input[type="number"] {
+  font: inherit;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--ink);
+}
+input:focus, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
