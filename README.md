@@ -5,6 +5,7 @@ Tools for the **Honolulu Tech Generals (HTU)**, my custom team in EA College Foo
 ## Tools
 
 - **Uniform Builder** (`uniform-builder/`): preview helmet, jersey, pants, and sock color combinations on a flat vector player. You can save named combos, compare them side by side, and download any combo as a PNG.
+- **Logo Prep** (`logo-prep/`): upload a PNG or JPG logo, remove its background, add a sticker-style outline (and an optional outer outline), check it on light, dark, and team-color backgrounds, and download transparent PNGs at 256, 512, 1024, or any size you type. It all runs in your browser; your logo is never uploaded anywhere. Instructions are at the top of the page.
 
 ## Changing team colors or info
 
@@ -44,6 +45,7 @@ index.html              Home page that lists the tools
 shared/team.js          Team info and color palette (shared by all tools)
 shared/site.css         Shared look and feel
 uniform-builder/        The Uniform Builder tool
+logo-prep/              The Logo Prep tool
 .nojekyll               Tells GitHub Pages to serve the files as-is
 ```
 

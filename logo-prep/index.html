@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTU Logo Prep</title>
+  <link rel="stylesheet" href="../shared/site.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="../shared/team.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <a class="abbr" data-team="abbreviation" href="../">HTU</a>
+      <span class="name" data-team="fullName">Honolulu Tech Generals</span>
+      <span class="tool">Logo Prep</span>
+    </div>
+  </header>
+
+  <main>
+    <details class="panel how-to" open>
+      <summary><h2>How to use this</h2></summary>
+      <ol>
+        <li><b>Pick your logo.</b> Click <b>Choose a logo</b> (or drag a PNG or JPG onto the box). Nothing gets uploaded anywhere. Everything happens right here in your browser.</li>
+        <li><b>Get rid of the background.</b> The tool guesses the background color from the edges of your picture. If it guessed wrong, click on the background in the <b>Before</b> picture to pick it yourself. The gray-and-white checkerboard in the <b>After</b> picture means "see-through."</li>
+        <li><b>Adjust the Tolerance slider.</b> Slide it right if bits of the old background are still showing around the edges. Slide it left if parts of the logo are disappearing. Logos saved as JPG usually need a bit more.</li>
+        <li><b>Holes in letters?</b> If the background still shows inside letters like O, A, or D, check <b>Also remove this color inside the logo</b>. Leave it off if your logo uses the same color on purpose, like white letters on a white-background logo.</li>
+        <li><b>Add the sticker outline.</b> The first outline hugs the logo (white by default). The outer outline goes around that (black by default). Change the thickness with the sliders, and pick any color or tap a team color. Uncheck either one to turn it off.</li>
+        <li><b>Check how it looks.</b> The previews at the bottom show your logo on a light background, a dark background, and on each of the team colors.</li>
+        <li><b>Download.</b> Set the <b>Padding</b> (empty space around the logo), then click a size button. For any other size, type a width and height and click <b>Download custom size</b>. You get a PNG with a see-through background, with the logo centered.</li>
+      </ol>
+    </details>
+
+    <section class="workspace">
+      <div class="panel">
+        <div id="dropzone" class="dropzone">
+          <p><b>Drop a PNG or JPG logo here</b></p>
+          <p>or</p>
+          <label class="button primary">Choose a logo
+            <input type="file" id="file-input" accept="image/png,image/jpeg" hidden>
+          </label>
+          <p class="hint" id="file-status" aria-live="polite"></p>
+        </div>
+
+        <div class="compare" id="compare" hidden>
+          <figure>
+            <figcaption>Before <span class="hint">(click to pick the background color)</span></figcaption>
+            <div class="checker"><canvas id="before-canvas" class="pickable"></canvas></div>
+          </figure>
+          <figure>
+            <figcaption>After</figcaption>
+            <div class="checker"><canvas id="after-canvas"></canvas></div>
+          </figure>
+        </div>
+        <p class="warning" id="warning" aria-live="polite" hidden></p>
+      </div>
+
+      <div class="panel controls" id="controls">
+        <fieldset>
+          <legend><label><input type="checkbox" id="bg-on" checked> Remove background</label></legend>
+          <div class="row">
+            <span class="label">Background color</span>
+            <span class="swatch-big" id="bg-swatch"></span>
+            <code id="bg-hex">—</code>
+            <button type="button" id="bg-auto">Auto-detect</button>
+          </div>
+          <div class="row">
+            <label class="label" for="tolerance">Tolerance</label>
+            <input type="range" id="tolerance" min="0" max="100" value="20">
+            <output id="tolerance-out">20</output>
+          </div>
+          <label class="check"><input type="checkbox" id="bg-everywhere"> Also remove this color inside the logo (holes in letters)</label>
+        </fieldset>
+
+        <fieldset>
+          <legend><label><input type="checkbox" id="o1-on" checked> Outline</label></legend>
+          <div class="row">
+            <label class="label" for="o1-color">Color</label>
+            <input type="color" id="o1-color" value="#ffffff">
+            <span class="swatches" data-for="o1-color"></span>
+          </div>
+          <div class="row">
+            <label class="label" for="o1-size">Thickness</label>
+            <input type="range" id="o1-size" min="0.5" max="10" step="0.25" value="3">
+            <output id="o1-size-out">3</output>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><label><input type="checkbox" id="o2-on" checked> Outer outline</label></legend>
+          <div class="row">
+            <label class="label" for="o2-color">Color</label>
+            <input type="color" id="o2-color" value="#000000">
+            <span class="swatches" data-for="o2-color"></span>
+          </div>
+          <div class="row">
+            <label class="label" for="o2-size">Thickness</label>
+            <input type="range" id="o2-size" min="0.5" max="10" step="0.25" value="1.5">
+            <output id="o2-size-out">1.5</output>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Download PNG</legend>
+          <div class="row">
+            <label class="label" for="padding">Padding</label>
+            <input type="range" id="padding" min="0" max="40" value="6">
+            <output id="padding-out">6%</output>
+          </div>
+          <div class="presets">
+            <button type="button" class="primary" data-size="256">256 × 256</button>
+            <button type="button" class="primary" data-size="512">512 × 512</button>
+            <button type="button" class="primary" data-size="1024">1024 × 1024</button>
+          </div>
+          <div class="custom-size">
+            <input type="number" id="custom-w" min="16" max="4096" value="800" aria-label="Width in pixels">
+            <span>×</span>
+            <input type="number" id="custom-h" min="16" max="4096" value="600" aria-label="Height in pixels">
+            <span class="hint">px</span>
+            <button type="button" id="download-custom">Download custom size</button>
+          </div>
+          <p class="hint" id="export-status" aria-live="polite"></p>
+        </fieldset>
+      </div>
+    </section>
+
+    <section class="panel backdrops-section">
+      <h2>How it looks on different backgrounds</h2>
+      <div class="backdrops" id="backdrops"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

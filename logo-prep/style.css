@@ -1,0 +1,126 @@
+.how-to { margin-bottom: 16px; }
+.how-to summary { cursor: pointer; list-style-position: outside; }
+.how-to summary h2 { display: inline; margin: 0; }
+.how-to ol { margin: 12px 0 0; padding-left: 1.4em; }
+.how-to li { margin-bottom: 6px; }
+
+.workspace {
+  display: grid;
+  grid-template-columns: 1fr minmax(300px, 400px);
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .workspace { grid-template-columns: 1fr; }
+}
+
+.hint { color: var(--muted); font-size: 0.9rem; margin: 8px 0 0; }
+.warning { color: #a23a12; background: #fdf1ea; border: 1px solid #f3c7ad; border-radius: 7px; padding: 8px 10px; margin: 12px 0 0; }
+
+.dropzone {
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+}
+.dropzone p { margin: 4px 0; }
+.dropzone.dragging { border-color: var(--accent); background: #eaf6f7; }
+.dropzone .button { margin: 4px 0; }
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+@media (max-width: 520px) {
+  .compare { grid-template-columns: 1fr; }
+}
+.compare figure { margin: 0; min-width: 0; }
+.compare figcaption { font-weight: 700; margin-bottom: 6px; }
+.compare figcaption .hint { font-weight: 400; font-size: 0.8rem; }
+
+.checker {
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #cfd5dc 25%, transparent 25%),
+    linear-gradient(-45deg, #cfd5dc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #cfd5dc 75%),
+    linear-gradient(-45deg, transparent 75%, #cfd5dc 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checker canvas { display: block; max-width: 100%; max-height: 100%; }
+canvas.pickable { cursor: crosshair; }
+
+.controls fieldset {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+  padding: 0 0 12px;
+}
+.controls fieldset + fieldset { padding-top: 12px; }
+.controls fieldset:last-child { border-bottom: 0; padding-bottom: 0; }
+.controls legend { font-weight: 700; font-size: 1.05rem; padding: 0; margin-bottom: 6px; }
+.controls legend label { cursor: pointer; }
+.controls fieldset.off .row, .controls fieldset.off .check { opacity: 0.45; }
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+  flex-wrap: wrap;
+}
+.row .label { width: 7.5em; font-weight: 600; font-size: 0.95rem; }
+.row input[type="range"] { flex: 1; min-width: 120px; accent-color: var(--accent); }
+.row output { width: 3em; text-align: right; font-variant-numeric: tabular-nums; }
+.row input[type="color"] {
+  width: 40px; height: 34px; padding: 0; border: 1px solid var(--line);
+  border-radius: 6px; background: none; cursor: pointer;
+}
+.check { display: flex; gap: 8px; align-items: flex-start; font-size: 0.95rem; padding-top: 4px; cursor: pointer; }
+.check input { margin-top: 3px; }
+
+.swatch-big {
+  width: 34px; height: 34px; border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  background: #fff;
+}
+
+.swatches { display: flex; gap: 6px; flex-wrap: wrap; }
+.swatch {
+  width: 26px; height: 26px; padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  border-radius: 50%;
+}
+.swatch.selected { box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent); }
+
+.presets { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+.custom-size { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.custom-size input { width: 5.5em; }
+
+.backdrops-section { margin-top: 16px; }
+.backdrops {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+.backdrop { margin: 0; }
+.backdrop canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.backdrop figcaption { text-align: center; font-size: 0.9rem; margin-top: 4px; }
+.backdrop figcaption code { color: var(--muted); font-size: 0.8rem; }
+.empty { color: var(--muted); font-style: italic; }
