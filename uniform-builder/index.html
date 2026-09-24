@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTU Uniform Builder</title>
+  <link rel="stylesheet" href="../shared/site.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="../shared/team.js"></script>
+  <script src="player.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="inner">
+      <a class="abbr" data-team="abbreviation" href="../">HTU</a>
+      <span class="name" data-team="fullName">Honolulu Tech Generals</span>
+      <span class="tool">Uniform Builder</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="editor">
+      <div class="panel preview-panel">
+        <div id="preview" class="preview"></div>
+        <div class="preview-actions">
+          <label>Number <input type="text" id="jersey-number" maxlength="2" inputmode="numeric" size="3"></label>
+          <button id="download-current">Download PNG</button>
+        </div>
+      </div>
+
+      <div class="panel controls-panel">
+        <h2>Colors</h2>
+        <div id="color-rows"></div>
+
+        <div class="save-bar">
+          <input type="text" id="combo-name" placeholder="Combo name, e.g. Home" list="name-ideas" maxlength="40">
+          <datalist id="name-ideas">
+            <option value="Home"><option value="Away"><option value="Military Alternate">
+            <option value="Blackout Alternate"><option value="Throwback"><option value="Aloha Bowl">
+          </datalist>
+          <button class="primary" id="save-combo">Save combo</button>
+        </div>
+        <p class="hint" id="save-status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="panel saved-section">
+      <h2>Saved combos <span class="count" id="saved-count"></span></h2>
+      <p class="hint">Saved in this browser, so they stay after you refresh. Click <b>Edit</b> to load one back into the builder.</p>
+      <div id="saved-grid" class="saved-grid"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
